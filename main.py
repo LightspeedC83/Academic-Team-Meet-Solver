@@ -7,6 +7,10 @@ class school():
         for x in range(1,8):
             if x != id_num:
                 self.previous_pairings[x] = 0
+    def count_connections(self):
+        connections = 0 
+        for key in self.previous_pairings.keys():
+            connections += self.previous_pairings[key]
 
 # creating 7 school objects
 schools = []
@@ -49,8 +53,26 @@ for x in range(7): # populating the matchup schedule list with the first match u
 #updating the pairing records of all the school objects after that first round matchup
 update_parings(matchup_schedule[0])
 
-for round in range(5): # there are 6 rounds
+for round in range(5): # there are 6 rounds but we set up the first matchup already (this way schools start out with some histroy of playing eachother)
     # generating the matchup for the first group (ie. the one with four slots)
     group_one = []
+    group_two = []
+    
+    # determining the school with the least connections and then putting that in group one
+    lowest = [schools[0], schools[0].count_connections()]
+    for school in schools:
+        if school.count_connections() < lowest[1]:
+            lowest = [school, school.count_connections()]
+    group_one.append(lowest[0])
+    schools_copy = schools[:]
+    schools_copy.remove(lowest[0])
+    
     for school in schools: # deciding on whether or not to add this school to group_one
-        pass
+        if len(group_one) < 4 :
+            # finding the school object that has the least number of connections to the schools in group_one 
+            pass
+            # (make sure to remember to remove what you add to group one from schools_copy so the next bit works)
+    
+    # adding the schools that aren't in group one to group 2
+    group_two = schools_copy
+    #aaaa
