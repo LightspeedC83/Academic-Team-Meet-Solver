@@ -92,7 +92,7 @@ for round in range(1,6): # there are 6 rounds but we set up the first matchup al
     update_parings(matchup_schedule[round])
 
 print_matchups() #printing the matchups
-#printing the connections list for each school
+#printing the connections list for each  school
 print()
 for school in schools:
     print(f"{school.id_num}: {school.previous_pairings}")
