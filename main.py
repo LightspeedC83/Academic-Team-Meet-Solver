@@ -11,6 +11,7 @@ class school():
         connections = 0 
         for key in self.previous_pairings.keys():
             connections += self.previous_pairings[key]
+        return(connections)
 
 # creating 7 school objects
 schools = []
@@ -53,7 +54,7 @@ for x in range(7): # populating the matchup schedule list with the first match u
 #updating the pairing records of all the school objects after that first round matchup
 update_parings(matchup_schedule[0])
 
-for round in range(5): # there are 6 rounds but we set up the first matchup already (this way schools start out with some histroy of playing eachother)
+for round in range(1,6): # there are 6 rounds but we set up the first matchup already (this way schools start out with some histroy of playing eachother)
     # generating the matchup for the first group (ie. the one with four slots)
     group_one = []
     group_two = []
@@ -67,12 +68,31 @@ for round in range(5): # there are 6 rounds but we set up the first matchup alre
     schools_copy = schools[:]
     schools_copy.remove(lowest[0])
     
-    for school in schools: # deciding on whether or not to add this school to group_one
-        if len(group_one) < 4 :
-            # finding the school object that has the least number of connections to the schools in group_one 
-            pass
-            # (make sure to remember to remove what you add to group one from schools_copy so the next bit works)
+    for place in range(3):
+        lowest = []
+        for school in schools_copy: # deciding on whether or not to add this school to group_one
+            if len(group_one) < 4 :
+                # finding the school object that has the least number of connections to the schools in group_one 
+                connections = 0
+                for other in group_one:
+                    connections += school.previous_pairings[other.id_num]
+
+                if lowest == []:
+                    lowest = [school, connections]
+                elif connections < lowest[1]:
+                    lowest = [school, connections]
+        
+        group_one.append(lowest[0])
+        schools_copy.remove(lowest[0]) # removing what we added to group one from schools_copy so the next bit works
     
     # adding the schools that aren't in group one to group 2
     group_two = schools_copy
-    #aaaa
+    
+    matchup_schedule.append([group_one,group_two])
+    update_parings(matchup_schedule[round])
+
+print_matchups() #printing the matchups
+#printing the connections list for each school
+print()
+for school in schools:
+    print(f"{school.id_num}: {school.previous_pairings}")
