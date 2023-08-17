@@ -5,6 +5,7 @@
 - This program is to find a schedule where each school has the opportunity to play every other school two times. 
 
 ## The solution the program generated:
+schools are identified with a number 1-7 and each list marks a meet location, while each newline marks a different day
 - [1, 2, 3, 4], [5, 6, 7] 
 - [5, 4, 7, 3], [1, 2, 6]
 - [6, 4, 7, 2], [1, 3, 5]
@@ -13,6 +14,7 @@
 - [2, 5, 7, 1], [3, 4, 6]
 
 ## The detailed infromation for the connections between schools
+in the form of school id followed by {dictionary with keys that are the ids of other schools and values of how many times the school in question were matched with said school}
 - 1: {2: 3, 3: 3, 4: 2, 5: 3, 6: 3, 7: 2}
 - 2: {1: 3, 3: 2, 4: 3, 5: 2, 6: 2, 7: 3}
 - 3: {1: 3, 2: 2, 4: 3, 5: 2, 6: 2, 7: 3}
