@@ -69,3 +69,42 @@ If we do that, the new hosting arraingement is:
 - ['s', 't'] --> [ ['r', 'e', 's', 'w'], ['b', 'h', 't'] ]
 - ['r', 'w'] --> [ ['t', 's', 'h', 'r'], ['b', 'w', 'e'] ]
 - ['b', 'h'] --> [ ['b', 't', 'e', 'r'], ['w', 'h', 's'] ]
+
+## Presenting the solution a little more nicely:
+(note that the meet numbers can be switched up so that schools don't have to host at back to back meets)
+
+Meet 1:
+    Matchup 1 hosted by H:
+        [R, B, W, H]
+    Matchup 2 hosted by E:
+        [T, S, E]
+
+Meet 2:
+    Matchup 1 hosted by E:
+        [T, H, E, W]
+    Matchup 2 hosted by S:
+        [R, B, S]
+
+Meet 3:
+    Matchup 1 hosted by B:
+        [S, H, E, B]
+    Matchup 2 hosted by T:
+        [R, W, T]
+
+Meet 4:
+    Matchup 1 hosted by S:
+        [R, E, S, W]
+    Matchup 2 hosted by T:
+        [B, H, T]
+
+Meet 5:
+    Matchup 1 hosted by R:
+        [T, S, H, R]
+    Matchup 2 hosted by W:
+        [B, W, E]
+
+Meet 6:
+    Matchup 1 hosted by B:
+        [B, T, E, R]
+    Matchup 2 hosted by H:
+        [W, H, S]
