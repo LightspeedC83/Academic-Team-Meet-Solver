@@ -22,3 +22,21 @@ in the form of school id followed by {dictionary with keys that are the ids of o
 - 5: {1: 3, 2: 2, 3: 2, 4: 3, 6: 2, 7: 3}
 - 6: {1: 3, 2: 2, 3: 2, 4: 3, 5: 2, 7: 3}
 - 7: {1: 2, 2: 3, 3: 3, 4: 2, 5: 3, 6: 3}
+
+
+## finding a meeting arraingement and assigning schools
+Now that there is a grouping of "schools" for all 6 meet days, we need to assign what schools those numbers actually correlate to. 
+
+There are 7 Schools, each assigned one of the following letters:
+- R
+- B
+- H
+- T
+- S
+- E
+- W
+
+The assignment of letters to numbers in the needs to comply to the following constraints:
+- Each school can host up to 2 matches (preferably one with 4 and one with 3)
+- School R and school W only host one match each
+- School R and school W cannot host eachother (ie. school R can't go to a match being hosted by school W and vice versa)
