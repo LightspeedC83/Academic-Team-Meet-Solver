@@ -108,3 +108,24 @@ If we do that, the new hosting arraingement is:
         - [B, T, E, R]
     - Matchup 2 hosted by H:
         - [W, H, S]
+
+
+# New Contraints:
+So the Problem has changed slightly and the contraints are now as follows:
+- Still 6 meets with one grouping of 4 schools and one grouping of 3
+- Each School still must be paired with every other school at least twice
+- School E and School W must be paired with each other in the group of 3 for both of the times that they play eachother
+- The third school in that grouping of 3 with School E and School W must be either School H or School T
+
+
+
+## New assignments
+The following details the new number assignments to each school
+- 1 --> E
+- 2 --> W
+- 3 --> H
+- 4 --> T
+- 5 --> S
+- 6 --> B
+- 7 --> R
+^^ Je ne sais pas de ca ^^
