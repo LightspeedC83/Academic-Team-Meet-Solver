@@ -132,10 +132,10 @@ The program came up with the following schedule:
 - Meet 6: ['T', 'H', 'R', 'S'] | ['E', 'W', 'B']
 
 The pairing information for this matchup possibility is as follows:
-- School E:   {'W': 4, 'H': 2, 'T': 2, 'S': 2, 'B': 2, 'R': 2}   (total connections = 14)
-- School W:   {'E': 4, 'H': 2, 'T': 2, 'S': 2, 'B': 2, 'R': 2}   (total connections = 14)
-- School H:   {'E': 2, 'W': 2, 'T': 2, 'S': 4, 'B': 2, 'R': 4}   (total connections = 16)
-- School T:   {'E': 2, 'W': 2, 'H': 2, 'S': 2, 'B': 4, 'R': 2}   (total connections = 14)
-- School S:   {'E': 2, 'W': 2, 'H': 4, 'T': 2, 'B': 2, 'R': 6}   (total connections = 18)
-- School B:   {'E': 2, 'W': 2, 'H': 2, 'T': 4, 'S': 2, 'R': 2}   (total connections = 14)
-- School R:   {'E': 2, 'W': 2, 'H': 4, 'T': 2, 'S': 6, 'B': 2}   (total connections = 18)
+- School E:  {'W': 4, 'H': 2, 'T': 2, 'S': 2, 'B': 2, 'R': 2} --> (total connections = 14)
+- School W:  {'E': 4, 'H': 2, 'T': 2, 'S': 2, 'B': 2, 'R': 2} --> (total connections = 14)
+- School H:  {'E': 2, 'W': 2, 'T': 2, 'S': 4, 'B': 2, 'R': 4} --> (total connections = 16)
+- School T:  {'E': 2, 'W': 2, 'H': 2, 'S': 2, 'B': 4, 'R': 2} --> (total connections = 14)
+- School S:  {'E': 2, 'W': 2, 'H': 4, 'T': 2, 'B': 2, 'R': 6} --> (total connections = 18)
+- School B:  {'E': 2, 'W': 2, 'H': 2, 'T': 4, 'S': 2, 'R': 2} --> (total connections = 14)
+- School R:  {'E': 2, 'W': 2, 'H': 4, 'T': 2, 'S': 6, 'B': 2} --> (total connections = 18)
