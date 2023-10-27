@@ -132,10 +132,36 @@ The program came up with the following schedule:
 - Meet 6: ['T', 'H', 'R', 'S'] | ['E', 'W', 'B']
 
 The pairing information for this matchup possibility is as follows:
-- School E: - {'W': 4, 'H': 2, 'T': 2, 'S': 2, 'B': 2, 'R': 2} --> (total connections = 14)
-- School W: - {'E': 4, 'H': 2, 'T': 2, 'S': 2, 'B': 2, 'R': 2} --> (total connections = 14)
-- School H: - {'E': 2, 'W': 2, 'T': 2, 'S': 4, 'B': 2, 'R': 4} --> (total connections = 16)
-- School T: - {'E': 2, 'W': 2, 'H': 2, 'S': 2, 'B': 4, 'R': 2} --> (total connections = 14)
-- School S: - {'E': 2, 'W': 2, 'H': 4, 'T': 2, 'B': 2, 'R': 6} --> (total connections = 18)
-- School B: - {'E': 2, 'W': 2, 'H': 2, 'T': 4, 'S': 2, 'R': 2} --> (total connections = 14)
-- School R: - {'E': 2, 'W': 2, 'H': 4, 'T': 2, 'S': 6, 'B': 2} --> (total connections = 18)
+- School E: - {'W': 4, 'H': 2, 'T': 2, 'S': 2, 'B': 2, 'R': 2} - (connections = 14)
+- School W: - {'E': 4, 'H': 2, 'T': 2, 'S': 2, 'B': 2, 'R': 2} - (connections = 14)
+- School H: - {'E': 2, 'W': 2, 'T': 2, 'S': 4, 'B': 2, 'R': 4} - (connections = 16)
+- School T: - {'E': 2, 'W': 2, 'H': 2, 'S': 2, 'B': 4, 'R': 2} - (connections = 14)
+- School S: - {'E': 2, 'W': 2, 'H': 4, 'T': 2, 'B': 2, 'R': 6} - (connections = 18)
+- School B: - {'E': 2, 'W': 2, 'H': 2, 'T': 4, 'S': 2, 'R': 2} - (connections = 14)
+- School R: - {'E': 2, 'W': 2, 'H': 4, 'T': 2, 'S': 6, 'B': 2} - (connections = 18)
+
+# Smooting out connection problems with that answer
+So that schedule fits the minimum criteria, but there are schools playing solely in one group way too many times. Now the task is to smooth out the unevenness in the total connections data (ie. we can't have some schools with 14 connections and owthers with 18, the distribution needs to be more even). The algorithm swaps random schools between groups in a meet and then only returns arraingements that have unique connection distributions, unique group 2 distributions, and at least two but no more than four connections with any other school
+
+The distribution that seemed best was: 
+
+- Meet 1: ['R', 'S', 'B', 'T'] | ['E', 'W', 'H']
+
+- Meet 2: ['R', 'S', 'B', 'H'] | ['E', 'W', 'T']
+
+- Meet 3: ['W', 'B', 'T', 'H'] | ['E', 'R', 'S']
+
+- Meet 4: ['R', 'B', 'W', 'E'] | ['T', 'H', 'S']
+
+- Meet 5: ['S', 'R', 'W', 'H'] | ['T', 'E', 'B']
+
+- Meet 6: ['E', 'S', 'W', 'H'] | ['R', 'T', 'B']
+
+The metadata for this arraingement is as follows:
+- E: - {'W': 4, 'H': 2, 'T': 2, 'S': 2, 'B': 2, 'R': 2} - (connections=14, num_group_two=4)
+- W: - {'E': 4, 'H': 4, 'T': 2, 'S': 2, 'B': 2, 'R': 2} - (connections=16, num_group_two=2)
+- H: - {'E': 2, 'W': 4, 'T': 2, 'S': 4, 'B': 2, 'R': 2} - (connections=16, num_group_two=2)
+- T: - {'E': 2, 'W': 2, 'H': 2, 'S': 2, 'B': 4, 'R': 2} - (connections=14, num_group_two=4)
+- S: - {'E': 2, 'W': 2, 'H': 4, 'T': 2, 'B': 2, 'R': 4} - (connections=16, num_group_two=2)
+- B: - {'E': 2, 'W': 2, 'H': 2, 'T': 4, 'S': 2, 'R': 4} - (connections=16, num_group_two=2)
+- R: - {'E': 2, 'W': 2, 'H': 2, 'T': 2, 'S': 4, 'B': 4} - (connections=16, num_group_two=2)
