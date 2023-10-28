@@ -141,7 +141,7 @@ The pairing information for this matchup possibility is as follows:
 - School R: - {'E': 2, 'W': 2, 'H': 4, 'T': 2, 'S': 6, 'B': 2} - (connections = 18)
 
 # Smoothing out connection problems with that answer
-So that schedule fits the minimum criteria, but there are schools playing solely in one group way too many times. Now the task is to smooth out the unevenness in the total connections data (ie. we can't have some schools with 14 connections and owthers with 18, the distribution needs to be more even). The algorithm swaps random schools between groups in a meet and then only returns arraingements that have unique connection distributions, unique group 2 distributions, and at least two but no more than four connections with any other school
+So that schedule fits the minimum criteria, but there are schools playing solely in one group way too many times. Now the task is to smooth out the unevenness in the total connections data (ie. we can't have some schools with 14 connections and others with 18, the distribution needs to be more even). The algorithm swaps random schools between groups in a meet and then only returns arraingements that have unique connection distributions, unique group 2 distributions, and at least two but no more than four connections with every other school.
 
 The distribution that seemed best was: 
 
