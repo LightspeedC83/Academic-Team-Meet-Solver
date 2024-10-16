@@ -194,6 +194,7 @@ This is the first attempt at a solution that the program came up with:
 - [['RCHS', 'WMHS', 'ERHS', 'BHS'], ['SHS', 'RHS', 'HHS', 'TAHS']]
 - [['RCHS', 'TAHS', 'WMHS', 'RHS'], ['SHS', 'BHS', 'HHS', 'ERHS']]
 - [['RCHS', 'ERHS', 'TAHS', 'BHS'], ['SHS', 'RHS', 'HHS', 'WMHS']]
+
 The problem is that BHS and RHS only meet once, let's see if we can manually change that and still get a valid answer. So I switched BHS and SHS in the 5th meet to get this pairing infromation:
 - [['RCHS', 'SHS', 'BHS', 'RHS'], ['TAHS', 'ERHS', 'WMHS']]
 - [['HHS', 'TAHS', 'RCHS', 'SHS'], ['RHS', 'ERHS', 'WMHS']]
@@ -202,6 +203,7 @@ The problem is that BHS and RHS only meet once, let's see if we can manually cha
 - [['RCHS', 'WMHS', 'ERHS', 'SHS'], ['BHS', 'RHS', 'HHS', 'TAHS']]
 - [['RCHS', 'TAHS', 'WMHS', 'RHS'], ['SHS', 'BHS', 'HHS', 'ERHS']]
 - [['RCHS', 'ERHS', 'TAHS', 'BHS'], ['SHS', 'RHS', 'HHS', 'WMHS']]
+
 I then wrote some shit code tacked on to the end of the same file (""making_groups_2024-2025.py") that manually put in this meet schedule and then checked whether or not it worked. And it does work! The pairing information for this tweaked shedule is as follows:
 - RCHS: {SHS:3, BHS:3, RHS:3, HHS:3, TAHS:3, ERHS:3, WMHS:3}
 - SHS: {RCHS:3, BHS:3, RHS:3, HHS:3, TAHS:3, ERHS:3, WMHS:3}
