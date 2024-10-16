@@ -185,3 +185,29 @@ The parameters are otherwise the same:
 - When ERHS and WMHS host, they should have only 3 teams at that event, and NOT RCHS or SHS.
 - When RCHS hosts, ERHS and WMHS should not be scheduled to come (too great of a distance.)
 - Every pair of schools has to be at the same location at least twice. Each school should be able to play only 2 of the other schools at any meet.
+
+This is the first attempt at a solution that the program came up with:
+- [['RCHS', 'SHS', 'BHS', 'RHS'], ['TAHS', 'ERHS', 'WMHS']]
+- [['HHS', 'TAHS', 'RCHS', 'SHS'], ['RHS', 'ERHS', 'WMHS']]
+- [['RCHS', 'WMHS', 'HHS', 'BHS'], ['SHS', 'RHS', 'TAHS', 'ERHS']]
+- [['RCHS', 'ERHS', 'HHS', 'RHS'], ['SHS', 'BHS', 'TAHS', 'WMHS']]
+- [['RCHS', 'WMHS', 'ERHS', 'BHS'], ['SHS', 'RHS', 'HHS', 'TAHS']]
+- [['RCHS', 'TAHS', 'WMHS', 'RHS'], ['SHS', 'BHS', 'HHS', 'ERHS']]
+- [['RCHS', 'ERHS', 'TAHS', 'BHS'], ['SHS', 'RHS', 'HHS', 'WMHS']]
+The problem is that BHS and RHS only meet once, let's see if we can manually change that and still get a valid answer. So I switched BHS and SHS in the 5th meet to get this pairing infromation:
+- [['RCHS', 'SHS', 'BHS', 'RHS'], ['TAHS', 'ERHS', 'WMHS']]
+- [['HHS', 'TAHS', 'RCHS', 'SHS'], ['RHS', 'ERHS', 'WMHS']]
+- [['RCHS', 'WMHS', 'HHS', 'BHS'], ['SHS', 'RHS', 'TAHS', 'ERHS']]
+- [['RCHS', 'ERHS', 'HHS', 'RHS'], ['SHS', 'BHS', 'TAHS', 'WMHS']]
+- [['RCHS', 'WMHS', 'ERHS', 'SHS'], ['BHS', 'RHS', 'HHS', 'TAHS']]
+- [['RCHS', 'TAHS', 'WMHS', 'RHS'], ['SHS', 'BHS', 'HHS', 'ERHS']]
+- [['RCHS', 'ERHS', 'TAHS', 'BHS'], ['SHS', 'RHS', 'HHS', 'WMHS']]
+I then wrote some shit code tacked on to the end of the same file (""making_groups_2024-2025.py") that manually put in this meet schedule and then checked whether or not it worked. And it does work! The pairing information for this tweaked shedule is as follows:
+- RCHS: {SHS:3, BHS:3, RHS:3, HHS:3, TAHS:3, ERHS:3, WMHS:3}
+- SHS: {RCHS:3, BHS:3, RHS:3, HHS:3, TAHS:3, ERHS:3, WMHS:3}
+- BHS: {RCHS:3, SHS:3, RHS:2, HHS:3, TAHS:3, ERHS:2, WMHS:2}
+- RHS: {RCHS:3, SHS:3, BHS:2, HHS:3, TAHS:3, ERHS:3, WMHS:3}
+- HHS: {RCHS:3, SHS:3, BHS:3, RHS:3, TAHS:2, ERHS:2, WMHS:2}
+- TAHS: {RCHS:3, SHS:3, BHS:3, RHS:3, HHS:2, ERHS:3, WMHS:3}
+- ERHS: {RCHS:3, SHS:3, BHS:2, RHS:3, HHS:2, TAHS:3, WMHS:3}
+- WMHS: {RCHS:3, SHS:3, BHS:2, RHS:3, HHS:2, TAHS:3, ERHS:3}
