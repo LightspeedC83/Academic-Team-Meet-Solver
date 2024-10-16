@@ -35,8 +35,8 @@ for x, y in zip(range(1,9), ["RCHS","SHS","BHS","RHS","HHS","TAHS","ERHS","WMHS"
 ordered_schools = schools[::]
 
 # creating the first two meets in the meet schedule
-matchup_1 = [[schools[0], schools[1], schools[2], schools[3]], [schools[5], schools[6], schools[7]]]
-matchup_2 = [[schools[4], schools[5], schools[0], schools[1]], [schools[3], schools[6], schools[7]]]
+matchup_1 = [[schools[0], schools[1], schools[2], schools[3]], [schools[5], schools[6], schools[7]]] #HHS sits out
+matchup_2 = [[schools[4], schools[5], schools[0], schools[1]], [schools[3], schools[6], schools[7]]] #BHS sits out
 
 meet_schedule = [matchup_1, matchup_2] # creating a list of all the meets and matchups
 
@@ -116,5 +116,80 @@ for school in ordered_schools:
     print()
 
 print(check)
+for school in unmatched:
+    print(school.name)
+
+############################
+#okay so the solution that this generates, is only off by one pairing. let's check our tweaked solution (refer to readme)
+
+#checking our tweaked solution
+tweaked_solution = [
+    [['RCHS', 'SHS', 'BHS', 'RHS'], ['TAHS', 'ERHS', 'WMHS']],
+    [['HHS', 'TAHS', 'RCHS', 'SHS'], ['RHS', 'ERHS', 'WMHS']],
+    [['RCHS', 'WMHS', 'HHS', 'BHS'], ['SHS', 'RHS', 'TAHS', 'ERHS']],
+    [['RCHS', 'ERHS', 'HHS', 'RHS'], ['SHS', 'BHS', 'TAHS', 'WMHS']],
+    [['RCHS', 'WMHS', 'ERHS', 'SHS'], ['BHS', 'RHS', 'HHS', 'TAHS']],
+    [['RCHS', 'TAHS', 'WMHS', 'RHS'], ['SHS', 'BHS', 'HHS', 'ERHS']],
+    [['RCHS', 'ERHS', 'TAHS', 'BHS'], ['SHS', 'RHS', 'HHS', 'WMHS']]
+    ]
+
+#turning the names in the tweaked solution into objects
+tweaked_solution_obj = []
+for meet in tweaked_solution:
+    meet_list = []
+    for matchup in meet:
+        matchup_list = []
+        for school_name in matchup:
+           matchup_list.append(ordered_schools[["RCHS","SHS","BHS","RHS","HHS","TAHS","ERHS","WMHS"].index(school_name)])
+
+        meet_list.append(matchup_list)
+    tweaked_solution_obj.append(meet_list)
+
+#resetting the pairing information
+for school in schools:
+    for key in school.previous_pairings.keys():
+        school.previous_pairings[key] = 0
+
+#updating the pairing information based off the tweaked solution
+for round in tweaked_solution_obj:
+    for matchup in round:
+        for school in matchup:
+            matchup_copy = matchup[::]
+            matchup_copy.remove(school)
+            for other in matchup_copy:
+                school.previous_pairings[other.id_num] += 1
+        
+#printing the meet infromation
+for matchup in tweaked_solution_obj:
+    print()
+    matchup_list = []
+    for section in matchup:
+        section_list = []
+        for school in section:
+            section_list.append(school.name)
+        matchup_list.append(section_list)
+    print(matchup_list)
+
+#printing the pairing information for each school with every other school
+for school in ordered_schools:
+    print(school.name+":")
+    for key in school.previous_pairings.keys():
+        print("   "+ ordered_schools[key-1].name, ":", school.previous_pairings[key])
+    print()
+
+#checking if every school is matched twice with every other school
+check = True
+for school in schools:
+    for key in school.previous_pairings.keys():
+        if school.previous_pairings[key] <2:
+            check = False
+print(check)
+
+# finding the schools that have too few matches with eachother
+unmatched = []
+for school in schools:
+    for key in school.previous_pairings.keys():
+        if school.previous_pairings[key] < 2:
+            unmatched.append(schools[key-1])
 for school in unmatched:
     print(school.name)
