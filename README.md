@@ -165,3 +165,23 @@ The metadata for this arraingement is as follows:
 - S: - {'E': 2, 'W': 2, 'H': 4, 'T': 2, 'B': 2, 'R': 4} - (connections=16, num_group_two=2)
 - B: - {'E': 2, 'W': 2, 'H': 2, 'T': 4, 'S': 2, 'R': 4} - (connections=16, num_group_two=2)
 - R: - {'E': 2, 'W': 2, 'H': 2, 'T': 2, 'S': 4, 'B': 4} - (connections=16, num_group_two=2)
+
+# Part 2: Electric Boogaloo!
+- The above stuff was for the 2023-2024 school year, and now the constraints have changed (agian) for the 2024-2025 school year. So let's solve this problem again baby! Working with the new constraints is in the file "making_groups_2024-2025.py"
+
+## The new contraints
+The schools are as follows (there's one more added):
+- RCHS
+- SHS
+- BHS
+- RHS
+- HHS
+- TAHS
+- ERHS
+- WMHS
+
+The last 2 schools (ERHS & WMHS) are the ones that will only host once, everyone else will host twice (7 week schedule.)
+The parameters are otherwise the same:
+- When ERHS and WMHS host, they should have only 3 teams at that event, and NOT RCHS or SHS.
+- When RCHS hosts, ERHS and WMHS should not be scheduled to come (too great of a distance.)
+- Every pair of schools has to be at the same location at least twice. Each school should be able to play only 2 of the other schools at any meet.
