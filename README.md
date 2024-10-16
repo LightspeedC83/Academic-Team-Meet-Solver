@@ -204,7 +204,7 @@ The problem is that BHS and RHS only meet once, let's see if we can manually cha
 - [['RCHS', 'TAHS', 'WMHS', 'RHS'], ['SHS', 'BHS', 'HHS', 'ERHS']]
 - [['RCHS', 'ERHS', 'TAHS', 'BHS'], ['SHS', 'RHS', 'HHS', 'WMHS']]
 
-I then wrote some shit code tacked on to the end of the same file (""making_groups_2024-2025.py") that manually put in this meet schedule and then checked whether or not it worked. And it does work! The pairing information for this tweaked shedule is as follows:
+I then wrote some shit code tacked on to the end of the same file ("making_groups_2024-2025.py") that manually put in this meet schedule and then checked whether or not it worked. And it does work! The pairing information for this tweaked shedule is as follows:
 - RCHS: {SHS:3, BHS:3, RHS:3, HHS:3, TAHS:3, ERHS:3, WMHS:3}
 - SHS: {RCHS:3, BHS:3, RHS:3, HHS:3, TAHS:3, ERHS:3, WMHS:3}
 - BHS: {RCHS:3, SHS:3, RHS:2, HHS:3, TAHS:3, ERHS:2, WMHS:2}
@@ -213,3 +213,14 @@ I then wrote some shit code tacked on to the end of the same file (""making_grou
 - TAHS: {RCHS:3, SHS:3, BHS:3, RHS:3, HHS:2, ERHS:3, WMHS:3}
 - ERHS: {RCHS:3, SHS:3, BHS:2, RHS:3, HHS:2, TAHS:3, WMHS:3}
 - WMHS: {RCHS:3, SHS:3, BHS:2, RHS:3, HHS:2, TAHS:3, ERHS:3}
+
+if schools don't sit out in the first rounds, we get this schedule:
+- [['RCHS', 'SHS', 'BHS', 'RHS', 'HHS'], ['TAHS', 'ERHS', 'WMHS']]
+- [['HHS', 'TAHS', 'RCHS', 'SHS', 'BHS'], ['RHS', 'ERHS', 'WMHS']]
+- [['RCHS', 'WMHS', 'ERHS', 'HHS'], ['SHS', 'BHS', 'RHS', 'TAHS']]
+- [['RCHS', 'WMHS', 'TAHS', 'RHS'], ['SHS', 'BHS', 'HHS', 'ERHS']]
+- [['RCHS', 'ERHS', 'TAHS', 'RHS'], ['SHS', 'BHS', 'HHS', 'WMHS']]
+- [['RCHS', 'WMHS', 'BHS', 'ERHS'], ['SHS', 'RHS', 'HHS', 'TAHS']]
+- [['RCHS', 'SHS', 'WMHS', 'ERHS'], ['BHS', 'RHS', 'HHS', 'TAHS']]
+
+if HHS withdraws from competition, and we move to a 6 week schedule, things get more complicated...

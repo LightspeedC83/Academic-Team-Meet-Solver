@@ -35,8 +35,8 @@ for x, y in zip(range(1,9), ["RCHS","SHS","BHS","RHS","HHS","TAHS","ERHS","WMHS"
 ordered_schools = schools[::]
 
 # creating the first two meets in the meet schedule
-matchup_1 = [[schools[0], schools[1], schools[2], schools[3]], [schools[5], schools[6], schools[7]]] #HHS sits out
-matchup_2 = [[schools[4], schools[5], schools[0], schools[1]], [schools[3], schools[6], schools[7]]] #BHS sits out
+matchup_1 = [[schools[0], schools[1], schools[2], schools[3], schools[4]], [schools[5], schools[6], schools[7]]] #HHS would sit out, if doing sit outs
+matchup_2 = [[schools[4], schools[5], schools[0], schools[1], schools[2]], [schools[3], schools[6], schools[7]]] #BHS would sit out, if doing sit outs
 
 meet_schedule = [matchup_1, matchup_2] # creating a list of all the meets and matchups
 
@@ -119,6 +119,9 @@ print(check)
 for school in unmatched:
     print(school.name)
 
+    
+"""
+
 ############################
 #okay so the solution that this generates, is only off by one pairing. let's check our tweaked solution (refer to readme)
 
@@ -193,3 +196,5 @@ for school in schools:
             unmatched.append(schools[key-1])
 for school in unmatched:
     print(school.name)
+    
+    """
