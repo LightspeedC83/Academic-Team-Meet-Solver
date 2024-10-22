@@ -224,3 +224,7 @@ if schools don't sit out in the first rounds, we get this schedule:
 - [['RCHS', 'SHS', 'WMHS', 'ERHS'], ['BHS', 'RHS', 'HHS', 'TAHS']]
 
 if HHS withdraws from competition, and we move to a 6 week schedule, things get more complicated...
+
+Alright we also have new constraints again: previously we have asssumed that schools can only count to have played against one another if they are in the same group within an individual day on the meet schedule. What matters is that the A teams play one another and in each matchup the a-team can only play two other schools so it's not guaranteed that just because two schools are in the same matchup. 
+
+Now the options are to either start from a complete graph and work backwards or continue trying to implement the creation of the graph as we create the meet schedule. I've decided to rework everything and write the new code in Java (don't ask me why)....
