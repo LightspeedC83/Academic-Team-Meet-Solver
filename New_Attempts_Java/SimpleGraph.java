@@ -85,4 +85,12 @@ public interface SimpleGraph<V, E> {
      */
     public boolean hasEdge(V vertex1, V vertex2) throws Exception;
 
+    /**
+     * returns the value associated with the edge between vertex1 and vertex2
+     * @param vertex1 the node from which the edge comes from 
+     * @param vertex2 the vertex to which the edge goes
+     * @return the value associated with the edge between vertex1 and vertex2
+     * @throws Exception
+     */
+    public E getEdge(V vertex1, V vertex2) throws Exception;
 }

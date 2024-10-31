@@ -118,5 +118,14 @@ public class SimpleAdjacencyMap<V,E> implements SimpleGraph<V,E>{
             throw new Exception("vertex1 does not exist");
         }
     }
+
+    @Override
+    public E getEdge(V vertex1, V vertex2) throws Exception{
+        try{
+            return outNeighbors.get(vertex1).get(vertex2);
+        } catch (Exception e){
+            throw new Exception("invalid verteces. One of the verteces doesn't exist");
+        }
+    }
     
 }
