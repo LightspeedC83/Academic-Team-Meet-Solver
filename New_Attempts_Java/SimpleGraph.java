@@ -1,5 +1,4 @@
 package New_Attempts_Java;
-import java.util.ArrayList;
 
 public interface SimpleGraph<V, E> {
     /**
@@ -67,7 +66,7 @@ public interface SimpleGraph<V, E> {
      * @return an array list of the nodes the inputted node points to
      * @throws Exception
      */
-    public ArrayList outNeighbors(V vertex) throws Exception;
+    public Iterable<V> outNeighbors(V vertex) throws Exception;
 
     /**
      * gets the nodes in the graph that have edges pointing to this node 
@@ -75,7 +74,7 @@ public interface SimpleGraph<V, E> {
      * @return an array list of the nodes that point to the inputted 
      * @throws Exception
      */
-    public ArrayList inNeighbors(V vertex) throws Exception;
+    public Iterable<V> inNeighbors(V vertex) throws Exception;
 
     /**
      * returns true if there is an edge from vertex 1 pointing to vertex 2
