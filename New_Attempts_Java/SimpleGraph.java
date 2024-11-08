@@ -50,7 +50,7 @@ public interface SimpleGraph<V, E> {
      * @return the out degree of that node
      * @throws Exception
      */
-    public int outDegree(V vertex) throws Exception;
+    public int outDegree(V vertex) ;
     
     /**
      * gives degree of the edges going into the inputted node

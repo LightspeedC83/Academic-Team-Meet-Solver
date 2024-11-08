@@ -232,6 +232,7 @@ Now the options are to either start from a complete graph and work backwards or 
 Okay so the way that the new Algorithm will work is:
 - create a graph with schools as the nodes and the number of times they've played eachother as edges. The graph will start out with every school being connected to every other school by an edge of value 2
 - get a random school object and add it to the draft meet matchup half, call this school A
+    - (instead of a random school, try getting the one with the highest degree)
 - get two of School A's neighbors and add them to the meet draft (consider preferentially adding neighbors with a higher edge weight)
 - every time you add a neighbor remove, it from the potential pool
 - continue adding neighbors to the the meet draft until the number of schools in it is what we want

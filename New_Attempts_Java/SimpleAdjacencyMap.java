@@ -65,7 +65,7 @@ public class SimpleAdjacencyMap<V,E> implements SimpleGraph<V,E>{
     }
 
     @Override
-    public int outDegree(V vertex) throws Exception {
+    public int outDegree(V vertex)  {
         try{
             int output = 0;
             for(@SuppressWarnings("unused") V other : outNeighbors.get(vertex).keySet()){
@@ -73,7 +73,8 @@ public class SimpleAdjacencyMap<V,E> implements SimpleGraph<V,E>{
             }
             return output;
         }catch(Exception e){
-            throw new Exception("vertex does not exist");
+            // throw new Exception("vertex does not exist");
+            return 0;
         }
     }
 

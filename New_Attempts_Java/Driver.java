@@ -2,6 +2,7 @@ package New_Attempts_Java;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.PriorityQueue;
 
 
 public class Driver {
@@ -51,23 +52,29 @@ public class Driver {
             
             // adding one school to the meet half draft then adding two of it's neighbors
             ArrayList<School> meetOne = new ArrayList<>();
-            meetOne.add(potentials.removeFirst());
+            
+            // the school that we add will be a school with the highest out degree, using a priority queue to find that school
+            PriorityQueue<School> pq = new PriorityQueue<>((s1, s2) -> Integer.compare(connections.outDegree(s2), connections.outDegree(s1)));
+            for (School s : potentials){pq.add(s);}
+            meetOne.add(pq.remove());
+            potentials.remove(meetOne.get(0));
+            
             int initAdd = 2;
             for (School x : connections.outNeighbors(meetOne.getFirst())){
                 if(initAdd<=0){break;}
-                else if (potentials.contains(x) && connections.getEdge(x, meetOne.getFirst())==2){ // this check may be redundant, but i don't think it's hurting anyone
-                    meetOne.add(x); //TODO: consider preferentially adding neighbors with a higher edge weight
+                else if (potentials.contains(x) && connections.getEdge(x, meetOne.getFirst())==2){ 
+                    meetOne.add(x); 
                     potentials.remove(x);
                     initAdd--;
                 }
             }
             //extra step now to fill out two initial matches for first school added to meetOne becuase the first pass focused on candidates with edge weight 2
             if (meetOne.size() != initAdd+1){ 
-                int extraAdd = 3-meetOne.size();
+                int extraAdd = initAdd+1 - meetOne.size();
                 for (School x : connections.outNeighbors(meetOne.getFirst())){
                     if(extraAdd<=0){break;}
                     else if (potentials.contains(x)){ // this check may be redundant, but i don't think it's hurting anyone
-                        meetOne.add(x); //TODO: consider preferentially adding neighbors with a higher edge weight
+                        meetOne.add(x); 
                         potentials.remove(x);
                         extraAdd--;
                     }
@@ -75,7 +82,7 @@ public class Driver {
             }
 
             //now we add neighbors of the neighbors we just added to the meet half draft
-            int extra = 2;
+            int extra = 1;
             // if(i<=1){extra=2;} // for the first two rounds we want to start with 5 schools in meetOne //TODO: <--address this
             for (int n=1; n<meetOne.size(); n++){
                 School nextFocus = meetOne.get(n);
