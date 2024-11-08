@@ -68,7 +68,7 @@ public class SimpleAdjacencyMap<V,E> implements SimpleGraph<V,E>{
     public int outDegree(V vertex) throws Exception {
         try{
             int output = 0;
-            for(V other : outNeighbors.get(vertex).keySet()){
+            for(@SuppressWarnings("unused") V other : outNeighbors.get(vertex).keySet()){
                 output++;
             }
             return output;
@@ -81,7 +81,7 @@ public class SimpleAdjacencyMap<V,E> implements SimpleGraph<V,E>{
     public int inDegree(V vertex) throws Exception {
         try{
             int output = 0;
-            for(V other : inNeighbors.get(vertex).keySet()){
+            for(@SuppressWarnings("unused") V other : inNeighbors.get(vertex).keySet()){
                 output++;
             }
             return output;

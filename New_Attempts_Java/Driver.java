@@ -1,6 +1,9 @@
 package New_Attempts_Java;
 
 import java.util.ArrayList;
+import java.util.Collections;
+
+
 public class Driver {
     public static void main(String[] args) throws Exception {
         // creating a bunch of school objects with the proper identificaiton information
@@ -25,7 +28,117 @@ public class Driver {
             }
         }
 
-        //now we shall print the graph that we just made
+        // //now we shall print the graph that we just made and the nodes' connections
+        // for(School x : schools){
+        //     System.out.println(x.getName());
+        //     for (School y : connections.outNeighbors(x)){
+        //         System.out.println("\t"+y.getName()+" "+connections.getEdge(x, y));
+        //     }
+        // }
+
+        // TODO: make infrastructure to build the meet schedule and keep track of it as we whittle down the graph
+        // creating a meet schedule that we will build up as we go
+        ArrayList<ArrayList<ArrayList<School>>> meetSchedule = new ArrayList<>();
+
+        for(int i=0; i<7; i++){ //for each meet in the schedule
+            //create a list with all the schools in it in a random order
+            ArrayList<School> potentials = new ArrayList<>();
+            for (School s : schools){
+                potentials.add(s);
+                s.resetMatchupsLeft();; //reset's schools exhaustion
+            }
+            Collections.shuffle(potentials);
+            
+            // adding one school to the meet half draft then adding two of it's neighbors
+            ArrayList<School> meetOne = new ArrayList<>();
+            meetOne.add(potentials.removeFirst());
+            int initAdd = 2;
+            for (School x : connections.outNeighbors(meetOne.getFirst())){
+                if(initAdd<=0){break;}
+                else if (potentials.contains(x)){ // this check may be redundant, but i don't think it's hurting anyone
+                    meetOne.add(x); //TODO: consider preferentially adding neighbors with a higher edge weight
+                    potentials.remove(x);
+                    initAdd--;
+                }
+            }
+
+            //now we add neighbors of the neighbors we just added to the meet half draft
+            int extra = 1;
+            // if(i<=1){extra=2;} // for the first two rounds we want to start with 5 schools in meetOne //TODO: <--address this
+            for (School x : connections.outNeighbors(meetOne.get((int)(Math.random()*2)+1))){ //going through the neighbors of one of the other two schools we added
+                if (extra<=0){break;}
+                else if(potentials.contains(x)){ // this check is necessary because we don't want to accidentally add the first school again
+                    meetOne.add(x);
+                    potentials.remove(x);
+                    extra--;
+                }
+            }
+            
+            
+            // now we shall update the graph of the nodes in meetOne by whittling down the connections
+            for (int s=0; s<meetOne.size(); s++){
+                School current = meetOne.get(s);
+                for (int o=0; o<meetOne.size(); o++){
+                    if (o!=s){
+                        School other = meetOne.get(o);
+                        if (!current.getCurrentMatchupsExhausted() && !other.getCurrentMatchupsExhausted() && connections.hasEdge(other, current)){
+                            //decrement connection strength or get rid of connection, decrement matchups left of each school
+                            if (connections.getEdge(current, other) == 2){
+                                connections.insertUndirected(current, other, 1);
+                            } else if (connections.getEdge(current, other) ==1){
+                                connections.removeUndirected(current, other);
+                            }
+
+                            current.decrementMatchupsLeft();
+                            other.decrementMatchupsLeft();
+                        }
+                    }
+                }
+            }
+
+            // now we update the connections of all the nodes remaining in the potentials list
+            for (int s=0; s<potentials.size(); s++){
+                School current = potentials.get(s);
+                for (int o=0; o<potentials.size(); o++){
+                    if (o!=s){
+                        School other = potentials.get(o);
+                        if (!current.getCurrentMatchupsExhausted() && !other.getCurrentMatchupsExhausted() && connections.hasEdge(other, current)){
+                            if (connections.getEdge(current, other) == 2){
+                                connections.insertUndirected(current, other, 1);
+                            } else if (connections.getEdge(current, other) == 1){
+                                connections.removeUndirected(current, other);
+                            }
+
+                            current.decrementMatchupsLeft();
+                            other.decrementMatchupsLeft();
+                        }
+                    }
+                }
+            }
+            
+            //adding meetOne to the meet schedule and adding the other schools the other matchup in that round of the meet schedule
+            ArrayList<ArrayList<School>> toAdd = new ArrayList<>();
+            toAdd.add(meetOne);
+            toAdd.add(potentials);
+            meetSchedule.add(toAdd);
+        }
+
+        //printing the meet schedule
+        int i = 0;
+        for (ArrayList<ArrayList<School>> meet : meetSchedule){
+            i++;
+            System.out.println("meet: "+i);
+            for (ArrayList<School> matchup : meet){
+                System.out.print("\t");
+                for(School s : matchup){
+                    System.out.print(s.getName()+", ");
+                }
+                System.out.println("");
+            }
+        }
+        
+        System.out.println("\nconnections remaining:");
+        //printing all the connections in the graph
         for(School x : schools){
             System.out.println(x.getName());
             for (School y : connections.outNeighbors(x)){
@@ -33,6 +146,6 @@ public class Driver {
             }
         }
 
-        // TODO: make infrastructure to build the meet schedule and keep track of it as we whittle down the graph
+
     }
 }

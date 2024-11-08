@@ -228,3 +228,11 @@ if HHS withdraws from competition, and we move to a 6 week schedule, things get 
 Alright we also have new constraints again: previously we have asssumed that schools can only count to have played against one another if they are in the same group within an individual day on the meet schedule. What matters is that the A teams play one another and in each matchup the a-team can only play two other schools so it's not guaranteed that just because two schools are in the same matchup. 
 
 Now the options are to either start from a complete graph and work backwards or continue trying to implement the creation of the graph as we create the meet schedule. I've decided to rework everything and write the new code in Java (don't ask me why)....
+
+Okay so the way that the new Algorithm will work is:
+- create a graph with schools as the nodes and the number of times they've played eachother as edges. The graph will start out with every school being connected to every other school by an edge of value 2
+- get a random school object and add it to the draft meet matchup half, call this school A
+- get two of School A's neighbors and add them to the meet draft (consider preferentially adding neighbors with a higher edge weight)
+- every time you add a neighbor remove, it from the potential pool
+- continue adding neighbors to the the meet draft until the number of schools in it is what we want
+- update the graph by removing or decrementing the edge value of the connections between each node, only decrement two edges per school node
