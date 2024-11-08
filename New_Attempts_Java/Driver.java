@@ -55,19 +55,44 @@ public class Driver {
             int initAdd = 2;
             for (School x : connections.outNeighbors(meetOne.getFirst())){
                 if(initAdd<=0){break;}
-                else if (potentials.contains(x)){ // this check may be redundant, but i don't think it's hurting anyone
+                else if (potentials.contains(x) && connections.getEdge(x, meetOne.getFirst())==2){ // this check may be redundant, but i don't think it's hurting anyone
                     meetOne.add(x); //TODO: consider preferentially adding neighbors with a higher edge weight
                     potentials.remove(x);
                     initAdd--;
                 }
             }
+            //extra step now to fill out two initial matches for first school added to meetOne becuase the first pass focused on candidates with edge weight 2
+            if (meetOne.size() != initAdd+1){ 
+                int extraAdd = 3-meetOne.size();
+                for (School x : connections.outNeighbors(meetOne.getFirst())){
+                    if(extraAdd<=0){break;}
+                    else if (potentials.contains(x)){ // this check may be redundant, but i don't think it's hurting anyone
+                        meetOne.add(x); //TODO: consider preferentially adding neighbors with a higher edge weight
+                        potentials.remove(x);
+                        extraAdd--;
+                    }
+                }
+            }
 
             //now we add neighbors of the neighbors we just added to the meet half draft
-            int extra = 1;
+            int extra = 2;
             // if(i<=1){extra=2;} // for the first two rounds we want to start with 5 schools in meetOne //TODO: <--address this
-            for (School x : connections.outNeighbors(meetOne.get((int)(Math.random()*2)+1))){ //going through the neighbors of one of the other two schools we added
+            for (int n=1; n<meetOne.size(); n++){
+                School nextFocus = meetOne.get(n);
+                for(School x :connections.outNeighbors(nextFocus)){
+                    if (extra<=0){break;}
+                    else if(potentials.contains(x) && connections.getEdge(x, nextFocus)==2){ // first pass with focus on neighbors with edge weight 2
+                        meetOne.add(x);
+                        potentials.remove(x);
+                        extra--;
+                    }
+                }
+                if(extra<=0){break;} 
+            }
+            //doing a second sweep for initialiing the list
+            for (School x : connections.outNeighbors(meetOne.get(1))){ //going through the neighbors of one of the other two schools we added
                 if (extra<=0){break;}
-                else if(potentials.contains(x)){ // this check is necessary because we don't want to accidentally add the first school again
+                else if(potentials.contains(x)){ // first pass with focus on neighbors with edge weight 2
                     meetOne.add(x);
                     potentials.remove(x);
                     extra--;

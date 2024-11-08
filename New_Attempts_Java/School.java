@@ -4,6 +4,7 @@ public class School{
     int id;
     int matchupsLeft; 
     boolean currentMatchupsExhausted;
+    String matchupNotes;
 
     public School(String name, int id){
         this.name = name;
@@ -32,11 +33,9 @@ public class School{
         currentMatchupsExhausted = false;
     }
 
-    public String getName(){
-        return name;
-    }
+    public String getName(){return name;}
 
-    public int getId(){
-        return id;
-    }
+    public int getId(){return id;}
+
+    public String getMatchupNotes(){return matchupNotes;}
 }
